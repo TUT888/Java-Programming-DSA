@@ -4,12 +4,12 @@ import creational.abstract_factory.factory.GUIFactory;
 import creational.abstract_factory.product.button.Button;
 import creational.abstract_factory.product.checkbox.Checkbox;
 
-public class CrossPlatformApplication {
+public class CrossPlatformApp {
 	private GUIFactory factory;
 	private Button button;
 	private Checkbox checkbox;
 	
-	public CrossPlatformApplication(GUIFactory factory) {
+	public CrossPlatformApp(GUIFactory factory) {
 		this.factory = factory;
 	}
 	

@@ -1,7 +1,6 @@
 package creational.builder;
 
-import java.util.Scanner;
-
+import creational.IOUtils;
 import creational.builder.builder.HouseBuilder;
 import creational.builder.builder.HousePlanBuilder;
 import creational.builder.director.Director;
@@ -15,12 +14,14 @@ public class Demo {
 		HouseBuilder houseBuilder = new HouseBuilder();
 		HousePlanBuilder housePlanBuilder = new HousePlanBuilder();
 		
-		HouseType selectedType = readUserInput();
+		// Get input
+		HouseType selectedType = IOUtils.readUserInput(HouseType.values());
 		if (selectedType == null) {
 			System.out.println("Invalid type, exiting application.");
 			return;
 		}
 		
+		// Process input
 		House newHouse = null;
 		HousePlan newHousePlan = null;
 		switch (selectedType) {
@@ -49,32 +50,9 @@ public class Demo {
 				System.out.println("Option not found");
 		}
 		
+		// Display result
 		System.out.println("House: " + newHouse.getHouseType());
 		System.out.println("--- House Plan ---");
 		newHousePlan.display();
-	}
-	
-	private static HouseType readUserInput() {
-		Scanner sc = new Scanner(System.in);
-		
-		// Select choice
-		HouseType[] options = HouseType.values();
-		System.out.println("Choose a type: ");
-		for (int i=0; i<options.length; i++) {
-			System.out.println(i + ": " + options[i].toString());
-		}
-		System.out.print("> Your choice: ");
-		
-		// Cleanup and return
-		HouseType selectedType = null;
-		try {
-			int c = sc.nextInt();
-			selectedType = options[c];
-		} catch (Exception e) {
-			System.out.println("Error when processing input: " + e.getMessage());
-		}
-		
-		sc.close();
-		return selectedType;
 	}
 }
